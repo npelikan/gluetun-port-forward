@@ -7,7 +7,7 @@ qbt_addr="${QBT_ADDR:-http://localhost:8080}" # ex. http://10.0.1.48:8080
 gtn_addr="${GTN_ADDR:-http://localhost:8000}" # ex. http://10.0.1.48:8000
 gtn_apikey="${GTN_APIKEY:-CHANGEME}"
 
-port_number=$(curl --fail --silent --show-error --header "X-API-Key: $GTN_APIKEY" $gtn_addr/v1/openvpn/portforwarded | jq '.port')
+port_number=$(curl --fail --silent --show-error --header "X-API-Key: $gtn_apikey" $gtn_addr/v1/openvpn/portforwarded | jq '.port')
 if [ ! "$port_number" ] || [ "$port_number" = "0" ]; then
     echo "Could not get current forwarded port from gluetun, exiting..."
     exit 1
